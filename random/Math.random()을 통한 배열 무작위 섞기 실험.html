@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Math.random()을 통한 배열 무작위 섞기 실험</title>
+</head>
+<body>
+<script>
+  function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
+
+  let result = new Map();
+
+  function setResult(key) {
+    let count = 0;
+
+    if (result.has(key)) {
+      count = result.get(key);
+      count++;
+    }
+
+    result.set(key, count);
+  }
+
+  const numbers = [1, 2, 3];
+
+  for (let count = 1; count <= 100000; count++) {
+    shuffle(numbers);
+    setResult(numbers.join(''));
+  }
+
+  for (let [key, value] of result) {
+    console.log(`${key}: ${value}`)
+  }
+</script>
+</body>
+</html>

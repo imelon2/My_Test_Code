@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>배열의 요소를 무작위로 섞는 방법</title>
+</head>
+<body>
+<script>
+  function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
+
+  const numbers = [1, 2, 3];
+  shuffle(numbers);
+
+  console.log(numbers);
+</script>
+</body>
+</html>

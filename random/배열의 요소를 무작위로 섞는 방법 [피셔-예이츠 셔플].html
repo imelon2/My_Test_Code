@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>배열의 요소를 무작위로 섞는 방법 [피셔-예이츠 셔플]</title>
+</head>
+<body>
+<script>
+  function shuffle(array) {
+    for (let index = array.length - 1; index > 0; index--) {
+      // 무작위 index 값을 만든다. (0 이상의 배열 길이 값)
+      const randomPosition = Math.floor(Math.random() * (index + 1));
+
+      // 임시로 원본 값을 저장하고, randomPosition을 사용해 배열 요소를 섞는다.
+      const temporary = array[index];
+      array[index] = array[randomPosition];
+      array[randomPosition] = temporary;
+    }
+  }
+
+  let result = new Map();
+
+  function setResult(key) {
+    let count = 0;
+
+    if (result.has(key)) {
+      count = result.get(key);
+      count++;
+    }
+
+    result.set(key, count);
+  }
+
+  const numbers = [1, 2, 3];
+
+  for (let count = 1; count <= 100000; count++) {
+    shuffle(numbers);
+    setResult(numbers.join(''));
+  }
+
+  for (let [key, value] of result) {
+    console.log(`${key}: ${value}`)
+  }
+</script>
+</body>
+</html>
